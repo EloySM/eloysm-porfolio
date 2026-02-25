@@ -1,3 +1,12 @@
+---
+import Header from '../components/Header.astro';
+import { Font } from "astro:assets";
+import '../styles/global.css';
+---
+
+<Font cssVariable="--font-onest" preload />
+<Font cssVariable="--font-cal-sans" preload />
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,18 +15,36 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Eloy's Portfolio - Web Developer and Programmer</title>
+		<meta name="description" content="Hire Eloy to create a web aplication. Web Developer" />
 	</head>
+
 	<body>
-		<slot />
+		<div class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+		<Header />
+		<slot/>
 	</body>
 </html>
 
 <style>
+	:root {
+		color-scheme: light dark;
+	}
+
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		font-family: var(--font-onest);
 	}
+
+	body {
+		display: flex;
+		flex-direction: column;
+		/* justify-content: center; */
+		background-color: #151515;
+		min-height: 100vh;
+	}
+
 </style>

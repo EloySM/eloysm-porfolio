@@ -1,11 +1,47 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Badge from '../components/Badge.astro';
 import Layout from '../layouts/Layout.astro';
+import GitHub from '../assets/github.svg'
+import LinkedIn from '../assets/linkedin.svg'
+import Mail from '../assets/mail.svg'
+import SocialPill from '../components/SocialPill.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<main>
+		<section class="w-full lg:w-3xl mx-auto py-44">
+			<img class="rounded-full size-12 mb-4" src="/public/avatar.png" alt="eloy photo">
+
+			<h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-10">
+				Hey I'm Eloy 
+				<a href="https://www.linkedin.com/in/eloy-s%C3%A1nchez-meijide-7348272b1/" target="_blank" rel="noopener" class="flex justify-center items-center">
+					<Badge>Available for hire</Badge>
+				</a>
+			</h1>
+			<h2 class="text-xl opacity-80 text-wrap">
+				<span>1 year of experience.</span>
+				<span class="text-yellow-300">Desarrollador Web.</span>
+				<span class="text-blue-300/90"> De Galicia, España.</span>
+				<span class="opacity-75">Especializado en crear aplicaciones únicas.</span>
+			</h2>
+
+			<nav class="flex gap-x-4 mt-8">
+				<SocialPill href="https://www.linkedin.com/in/eloy-s%C3%A1nchez-meijide-7348272b1/">
+					<LinkedIn class='size-6'/>
+					LinkedIn
+				</SocialPill>
+				<SocialPill href="https://github.com/EloySM">
+					<GitHub class='size-6'/>
+					GitHub
+				</SocialPill>
+				<SocialPill href="https://github.com/EloySM">
+					<Mail class='size-6'/>
+					esanchezmeijide@gmail.com
+				</SocialPill>
+			</nav>
+		</section>
+	</main>
 </Layout>
