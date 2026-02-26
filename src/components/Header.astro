@@ -1,10 +1,48 @@
-<header class="flex justify-center p-5 w-280 mx-auto">
+---
+import UserIcon from "../assets/user-circle.svg";
+import HouseIcon from "../assets/house.svg";
+import ProjectsIcon from '../assets/projects.svg'
+import ContactIcon from '../assets/contact.svg'
+import SunIcon from '../assets/sun.svg'
+import MoonIcon from '../assets/moon.svg'
+import { ui, type Locale } from "../i18n/ui";
 
-  <nav class="flex flex-row gap-x-10 opacity-90">
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/projects">Projects</a>
-    <a href="/contact">Contact</a>
+const lang = (Astro.currentLocale ?? "en") as Locale;
+const t = ui[lang];
+
+const items = [
+  { id: 'home', href: '#', label: t.nav.home, Icon: HouseIcon, IconsOnlyd: true},
+  { id: 'abotu', href: '#about', label: t.nav.about, Icon: UserIcon, IconsOnlyd: false},
+  { id: 'projects', href: '#projects', label: t.nav.projects, Icon: ProjectsIcon, IconsOnlyd: false},
+  { id: 'contact', href: '#contact', label: t.nav.contact, Icon: ContactIcon, IconsOnlyd: false},
+]
+---
+
+<header class="mx-auto w-fit">
+  
+  <nav class="flex flex-row items-center justify-center gap-x-1 mt-3 p-0.5 opacity-90 border border-white/10 rounded-full bg-gray-900/50">
+    {items.map((item, idx) => (
+      <>
+      <a href={item.href} class="flex items-center justify-center gap-x-2 p-3 transition hover:bg-gray-600/30 hover:ring-1 hover:ring-white/20 rounded-full"><item.Icon class={'size-4'}/>
+        {!item.IconsOnlyd && <span class="leading-none">{item.label}</span> }
+      </a>
+      {idx !== items.length - 1 && (
+        <span class="h-6 w-px bg-white/10" aria-hidden="true"></span>
+      )}
+      </>
+     
+    ))}
+            
+      <span class="h-6 w-px bg-white/15" aria-hidden="true"></span>
+    
+    <button
+    type="button"
+    class="h-10 inline-flex items-center justify-center rounded-full px-3 transition
+           text-white/85 hover:text-white hover:bg-gray-600/30 hover:ring-1 hover:ring-white/30"
+    aria-label="Toggle theme"
+  >
+    <MoonIcon class="size-4 block" />
+  </button>
   </nav>
 
 

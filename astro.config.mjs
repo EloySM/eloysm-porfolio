@@ -19,5 +19,15 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "es"],
+    // Decide si quieres /en/... o no:
+    // prefixDefaultLocale: false -> / (en) y /es/...
+    // prefixDefaultLocale: true  -> /en/... y /es/...
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
 });
