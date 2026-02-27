@@ -7,321 +7,58 @@ import Mail from "../assets/mail.svg";
 import SocialPill from "../components/SocialPill.astro";
 
 import { ui, type Locale } from "../i18n/ui";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
 
 const lang = (Astro.currentLocale ?? "en") as Locale;
-const t = ui[lang];
+const t = ui[lang] as (typeof ui)[Locale];
+
+const LINKS = {
+  linkedin: "https://www.linkedin.com/in/eloy-s%C3%A1nchez-meijide-7348272b1/",
+  github: "https://github.com/EloySM",
+  email: "esanchezmeijide@gmail.com",
+};
 ---
 
 <Layout>
   <main>
-    <section class="w-full lg:w-3xl mx-auto py-22">
-      <img
-        class="rounded-full size-24 mb-8"
-        src="/avatar.png"
-        alt={t.hero.altAvatar}
-      />
+		<Hero t={t} links={LINKS} />
 
-      <h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-10">
-        {t.hero.greeting}
-        <a
-          href="https://www.linkedin.com/in/eloy-s%C3%A1nchez-meijide-7348272b1/"
-          target="_blank"
-          rel="noopener"
-          class="flex justify-center items-center"
-        >
-          <Badge>{t.hero.badge}</Badge>
-        </a>
-      </h1>
+		<About t={t} />
 
-      <h2 class="text-2xl opacity-85 text-wrap">
-        <span>{t.hero.experience}</span>
-        <span class="text-yellow-200">{t.hero.role}</span>
-        <span class="opacity-90"> {t.hero.location}</span>
-        <span class="opacity-80"> {t.hero.specialty}</span>
-      </h2>
+		<Projects t={t} links={LINKS} />
 
-      <nav class="flex gap-x-4 mt-8">
-        <SocialPill
-          href="https://www.linkedin.com/in/eloy-s%C3%A1nchez-meijide-7348272b1/"
-        >
-          <LinkedIn class="size-5" />
-          {t.social.linkedin}
-        </SocialPill>
+		<Contact t={t} links={LINKS} />
 
-        <SocialPill href="https://github.com/EloySM">
-          <GitHub class="size-5" />
-          {t.social.github}
-        </SocialPill>
-
-        <SocialPill href="mailto:esanchezmeijide@gmail.com">
-          <Mail class="size-5" />
-          {t.social.email}
-        </SocialPill>
-      </nav>
-    </section>
-
-    <section class="max-w-2xl mx-auto py-10 px-4">
-      <h2 class="text-3xl font-bold mb-6 font-cal-sans text-white">
-        {t.about.title}
-      </h2>
-
-      <div class="space-y-4 text-gray-300 leading-relaxed">
-        <p>
-          {lang === "es" ? (
-            <>
-              ¡Hola! Soy <span class="text-blue-400 font-semibold">Eloy</span>, un
-              apasionado de la tecnología que encontró en la programación la mezcla
-              perfecta entre lógica y creatividad.
-            </>
-          ) : (
-            <>
-              Hi! I'm <span class="text-blue-400 font-semibold">Eloy</span>, a
-              technology enthusiast who found in programming the perfect mix of
-              logic and creativity.
-            </>
-          )}
-        </p>
-
-        <p>
-          {t.about.p2
-            .replace("React and Next.js", "")
-            .replace("React y Next.js", "")}
-          {/* Mantengo los spans de highlight como en tu texto original */}
-          {lang === "es" ? (
-            <>
-              Mi enfoque va más allá de escribir líneas de código; me dedico a crear
-              soluciones completas. Me muevo con fluidez en el ecosistema de{" "}
-              <span class="text-white">React y Next.js</span>, y disfruto diseñando
-              estructuras de datos sólidas en{" "}
-              <span class="text-white">PostgreSQL</span>.
-            </>
-          ) : (
-            <>
-              My approach goes beyond writing lines of code; I focus on building
-              complete solutions. I'm fluent in the{" "}
-              <span class="text-white">React and Next.js</span> ecosystem, and I
-              enjoy designing solid data structures with{" "}
-              <span class="text-white">PostgreSQL</span>.
-            </>
-          )}
-        </p>
-
-        <p>
-          {lang === "es" ? (
-            <>
-              Para mí, cada proyecto es una oportunidad de equilibrar un rendimiento
-              extremo (gracias a herramientas como{" "}
-              <span class="text-white">Astro</span>) con una estética impecable
-              usando <span class="text-white">Tailwind CSS</span>.
-            </>
-          ) : (
-            <>
-              For me, every project is an opportunity to balance extreme performance
-              (thanks to tools like <span class="text-white">Astro</span>) with a
-              polished aesthetic using <span class="text-white">Tailwind CSS</span>.
-            </>
-          )}
-        </p>
-      </div>
-    </section>
-
-    <section id="projects" class="w-full max-w-5xl mx-auto px-6 py-24">
-      <div class="flex items-end justify-between gap-6">
-        <div>
-          <p class="text-sm uppercase tracking-wider text-white/60">
-            {t.projects.eyebrow}
-          </p>
-          <h2
-            class="text-3xl sm:text-4xl font-bold text-white"
-            style="font-family: var(--font-cal-sans);"
-          >
-            {t.projects.title}
-          </h2>
-          <p class="mt-3 text-white/70 max-w-2xl">{t.projects.intro}</p>
-        </div>
-
-        <a
-          href="https://github.com/"
-          target="_blank"
-          rel="noopener"
-          class="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 transition"
-        >
-          {t.projects.ctaGithub}
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Card 1 -->
-        <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition">
-          <div class="flex items-start justify-between gap-4">
-            <h3 class="text-lg font-semibold text-white">{t.projects.card1.title}</h3>
-            <span class="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs text-white/70">
-              {t.projects.card1.type}
-            </span>
-          </div>
-
-          <p class="mt-3 text-white/70">{t.projects.card1.desc}</p>
-
-          <div class="mt-5 flex flex-wrap gap-2">
-            {t.projects.card1.tags.map((tag) => (
-              <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div class="mt-6 flex items-center gap-3">
-            <a
-              href="#"
-              class="inline-flex items-center justify-center rounded-full bg-white text-black px-4 py-2 text-sm font-medium hover:opacity-90 transition"
-            >
-              {t.projects.card1.live}
-            </a>
-            <a
-              href="#"
-              class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 transition"
-            >
-              {t.projects.card1.code}
-            </a>
-          </div>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition">
-          <div class="flex items-start justify-between gap-4">
-            <h3 class="text-lg font-semibold text-white">{t.projects.card2.title}</h3>
-            <span class="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs text-white/70">
-              {t.projects.card2.type}
-            </span>
-          </div>
-
-          <p class="mt-3 text-white/70">{t.projects.card2.desc}</p>
-
-          <div class="mt-5 flex flex-wrap gap-2">
-            {t.projects.card2.tags.map((tag) => (
-              <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div class="mt-6 flex items-center gap-3">
-            <a
-              href="#"
-              class="inline-flex items-center justify-center rounded-full bg-white text-black px-4 py-2 text-sm font-medium hover:opacity-90 transition"
-            >
-              {t.projects.card2.live}
-            </a>
-            <a
-              href="#"
-              class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 transition"
-            >
-              {t.projects.card2.code}
-            </a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact" class="w-full max-w-5xl mx-auto px-6 pb-28">
-      <div class="rounded-3xl border border-white/10 bg-white/5 p-8 sm:p-10">
-        <p class="text-sm uppercase tracking-wider text-white/60">
-          {t.contact.eyebrow}
-        </p>
-        <h2
-          class="mt-2 text-3xl sm:text-4xl font-bold text-white"
-          style="font-family: var(--font-cal-sans);"
-        >
-          {t.contact.title}
-        </h2>
-
-        <p class="mt-4 text-white/70 max-w-2xl">{t.contact.intro}</p>
-
-        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Contact info -->
-          <div class="space-y-4">
-            <a
-              href={"mailto:" + t.contact.cards.emailValue}
-              class="flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-white/80 hover:text-white hover:bg-white/10 transition"
-            >
-              <div>
-                <p class="text-sm text-white/60">{t.contact.cards.emailLabel}</p>
-                <p class="font-medium">{t.contact.cards.emailValue}</p>
-              </div>
-              <span aria-hidden="true">→</span>
-            </a>
-
-            <a
-              href="https://www.linkedin.com/"
-              target="_blank"
-              rel="noopener"
-              class="flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-white/80 hover:text-white hover:bg-white/10 transition"
-            >
-              <div>
-                <p class="text-sm text-white/60">{t.contact.cards.linkedinLabel}</p>
-                <p class="font-medium">{t.contact.cards.linkedinValue}</p>
-              </div>
-              <span aria-hidden="true">→</span>
-            </a>
-
-            <a
-              href="https://github.com/"
-              target="_blank"
-              rel="noopener"
-              class="flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-white/80 hover:text-white hover:bg-white/10 transition"
-            >
-              <div>
-                <p class="text-sm text-white/60">{t.contact.cards.githubLabel}</p>
-                <p class="font-medium">{t.contact.cards.githubValue}</p>
-              </div>
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-
-          <!-- Form -->
-          <form class="rounded-2xl border border-white/10 bg-black/20 p-5 space-y-4">
-            <div>
-              <label class="text-sm text-white/70">{t.contact.form.name}</label>
-              <input
-                type="text"
-                name="name"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30"
-                placeholder={t.contact.form.namePlaceholder}
-              />
-            </div>
-
-            <div>
-              <label class="text-sm text-white/70">{t.contact.form.email}</label>
-              <input
-                type="email"
-                name="email"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30"
-                placeholder={t.contact.form.emailPlaceholder}
-              />
-            </div>
-
-            <div>
-              <label class="text-sm text-white/70">{t.contact.form.message}</label>
-              <textarea
-                name="message"
-                rows="4"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30"
-                placeholder={t.contact.form.messagePlaceholder}
-              ></textarea>
-            </div>
-
-            <button
-              type="button"
-              class="w-full rounded-xl bg-white px-4 py-3 text-sm font-semibold text-black hover:opacity-90 transition"
-            >
-              {t.contact.form.submit}
-            </button>
-
-            <p class="text-xs text-white/40">{t.contact.form.note}</p>
-          </form>
-        </div>
-      </div>
-    </section>
   </main>
 </Layout>
+
+<script is:inline>
+  const form = document.getElementById("contact-form");
+  const statusEl = document.getElementById("contact-status");
+  const btn = document.getElementById("contact-submit");
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    statusEl.textContent = "Sending...";
+    btn.disabled = true;
+
+    try {
+      const res = await fetch("/api/contact", { method: "POST", body: new FormData(form) });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
+        statusEl.textContent = "Sent ✓";
+        form.reset();
+      } else {
+        statusEl.textContent = data.error ? `Error: ${data.error}` : "Error sending.";
+      }
+    } catch {
+      statusEl.textContent = "Network error.";
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>

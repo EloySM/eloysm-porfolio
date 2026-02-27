@@ -1,0 +1,19 @@
+---
+import { ui, type Locale } from '../i18n/ui'
+
+type T = (typeof ui)[Locale]
+
+const { t } = Astro.props as { t: T }
+---
+
+<section id="about" class="w-full lg:w-2xl mx-auto py-16">
+  <h2 class="text-3xl font-bold mb-6 font-cal-sans text-white">
+    {t.about.title}
+  </h2>
+
+  <div class="space-y-4 text-gray-300 leading-relaxed">
+    <p>{t.about.p1}</p>
+    <p>{t.about.p2}</p>
+    <p>{t.about.p3}</p>
+  </div>
+</section>

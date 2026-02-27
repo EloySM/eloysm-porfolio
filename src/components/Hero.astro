@@ -1,0 +1,48 @@
+---
+import Badge from "./Badge.astro";
+import SocialPill from "./SocialPill.astro";
+import GitHub from "../assets/github.svg";
+import LinkedIn from "../assets/linkedin.svg";
+import Mail from "../assets/mail.svg";
+
+const { t, links } = Astro.props
+---
+<section class="w-full lg:w-3xl mx-auto py-22">
+      <img class="rounded-full size-24 mb-8" src="/avatar.png" alt={t.hero.altAvatar} />
+
+      <h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-10">
+        {t.hero.greeting}
+        <a
+          href={links.linkedin}
+          target="_blank"
+          rel="noopener"
+          class="flex justify-center items-center"
+        >
+          <Badge>{t.hero.badge}</Badge>
+        </a>
+      </h1>
+
+      <h2 class="text-2xl opacity-85 text-wrap">
+        <span>{t.hero.experience}</span>
+        <span class="text-yellow-200">{t.hero.role}</span>
+        <span class="opacity-90"> {t.hero.location}</span>
+        <span class="opacity-80"> {t.hero.specialty}</span>
+      </h2>
+
+      <nav class="flex gap-x-4 mt-8">
+        <SocialPill href={links.linkedin}>
+          <LinkedIn class="size-5" />
+          {t.social.linkedin}
+        </SocialPill>
+
+        <SocialPill href={links.github}>
+          <GitHub class="size-5" />
+          {t.social.github}
+        </SocialPill>
+
+        <SocialPill href={"mailto:" + links.email}>
+          <Mail class="size-5" />
+          {links.email}
+        </SocialPill>
+      </nav>
+    </section>

@@ -12,6 +12,7 @@
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.17.1",
     "astro-theme-toggle": "^0.8.0",
+    "resend": "^6.9.2",
     "tailwindcss": "^4.2.1"
   }
 }

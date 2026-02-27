@@ -35,21 +35,21 @@ export const ui = {
         "Some recent projects. If you want to see more, I have private repos and demos available upon request.",
       ctaGithub: "View on GitHub",
       card1: {
-        title: "Project name",
+        title: "Spency.app",
         type: "Web App",
         desc:
-          "Short project description. What problem it solves and what makes it interesting.",
-        tags: ["Astro", "Tailwind", "TypeScript"],
-        live: "Live",
+          "Personal finance expense tracker website with charts. It solved my problem of comparing expenses from one year to another.",
+        tags: ["React", "Next.js", "TypeScript", "Tailwind"],
+        live: "Link",
         code: "Code",
       },
       card2: {
-        title: "Project name",
-        type: "Landing",
+        title: "In the future",
+        type: "Web App",
         desc:
           "Short project description. Metrics, speed, accessibility, etc.",
         tags: ["React", "Next.js", "SEO"],
-        live: "Live",
+        live: "Link",
         code: "Code",
       },
     },
@@ -59,7 +59,7 @@ export const ui = {
       intro: "Do you have a project in mind? Message me and I’ll reply quickly.",
       cards: {
         emailLabel: "Email",
-        emailValue: "youremail@domain.com",
+        emailValue: "esanchezmeijide@gmail.com",
         linkedinLabel: "LinkedIn",
         linkedinValue: "Connect",
         githubLabel: "GitHub",
@@ -69,7 +69,7 @@ export const ui = {
         name: "Name",
         namePlaceholder: "Your name",
         email: "Email",
-        emailPlaceholder: "you@email.com",
+        emailPlaceholder: "youremaiil@gmail.com",
         message: "Message",
         messagePlaceholder: "Tell me what you need…",
         submit: "Send",
@@ -114,12 +114,12 @@ export const ui = {
         "Algunos proyectos recientes. Si quieres ver más, tengo repos privados y demos bajo petición.",
       ctaGithub: "Ver en GitHub",
       card1: {
-        title: "Nombre del proyecto",
+        title: "Spency.app",
         type: "Web App",
         desc:
-          "Descripción corta del proyecto. Qué problema resuelve y qué lo hace interesante.",
-        tags: ["Astro", "Tailwind", "TypeScript"],
-        live: "Live",
+          "Web para gestion de gastos personales con gráficos. Resolvió mi problema para comparar gastos de un año para otro.",
+        tags: ["React", "Next.js", "TypeScript", "Tailwind"],
+        live: "Link",
         code: "Code",
       },
       card2: {
@@ -128,7 +128,7 @@ export const ui = {
         desc:
           "Descripción corta del proyecto. Métricas, velocidad, accesibilidad, etc.",
         tags: ["React", "Next.js", "SEO"],
-        live: "Live",
+        live: "Link",
         code: "Code",
       },
     },
@@ -138,7 +138,7 @@ export const ui = {
       intro: "¿Tienes un proyecto en mente? Escríbeme y te respondo rápido.",
       cards: {
         emailLabel: "Email",
-        emailValue: "tuemail@dominio.com",
+        emailValue: "esanchezmeijide@gmail.com",
         linkedinLabel: "LinkedIn",
         linkedinValue: "Conectar",
         githubLabel: "GitHub",

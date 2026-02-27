@@ -9,24 +9,24 @@ import SocialPill from "../../components/SocialPill.astro";
 import { ui, type Locale } from "../../i18n/ui";
 
 const lang = (Astro.currentLocale ?? "en") as Locale;
-const t = ui[lang];
+const t = ui[lang] as (typeof ui)[Locale];
 
-console.log("auto-locale redirect running", navigator.language);  
+const LINKS = {
+  linkedin: "https://www.linkedin.com/in/eloy-s%C3%A1nchez-meijide-7348272b1/",
+  github: "https://github.com/EloySM",
+  email: "esanchezmeijide@gmail.com",
+};
 ---
 
 <Layout>
   <main>
     <section class="w-full lg:w-3xl mx-auto py-22">
-      <img
-        class="rounded-full size-24 mb-8"
-        src="/avatar.png"
-        alt={t.hero.altAvatar}
-      />
+      <img class="rounded-full size-24 mb-8" src="/avatar.png" alt={t.hero.altAvatar} />
 
       <h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-10">
         {t.hero.greeting}
         <a
-          href="https://www.linkedin.com/in/eloy-s%C3%A1nchez-meijide-7348272b1/"
+          href={LINKS.linkedin}
           target="_blank"
           rel="noopener"
           class="flex justify-center items-center"
@@ -43,96 +43,39 @@ console.log("auto-locale redirect running", navigator.language);
       </h2>
 
       <nav class="flex gap-x-4 mt-8">
-        <SocialPill
-          href="https://www.linkedin.com/in/eloy-s%C3%A1nchez-meijide-7348272b1/"
-        >
+        <SocialPill href={LINKS.linkedin}>
           <LinkedIn class="size-5" />
           {t.social.linkedin}
         </SocialPill>
 
-        <SocialPill href="https://github.com/EloySM">
+        <SocialPill href={LINKS.github}>
           <GitHub class="size-5" />
           {t.social.github}
         </SocialPill>
 
-        <SocialPill href="mailto:esanchezmeijide@gmail.com">
+        <SocialPill href={"mailto:" + LINKS.email}>
           <Mail class="size-5" />
-          {t.social.email}
+          {LINKS.email}
         </SocialPill>
       </nav>
     </section>
 
-    <section class="max-w-2xl mx-auto py-10 px-4">
+    <section id="about" class="w-full lg:w-2xl mx-auto py-16">
       <h2 class="text-3xl font-bold mb-6 font-cal-sans text-white">
         {t.about.title}
       </h2>
 
       <div class="space-y-4 text-gray-300 leading-relaxed">
-        <p>
-          {lang === "es" ? (
-            <>
-              ¡Hola! Soy <span class="text-blue-400 font-semibold">Eloy</span>, un
-              apasionado de la tecnología que encontró en la programación la mezcla
-              perfecta entre lógica y creatividad.
-            </>
-          ) : (
-            <>
-              Hi! I'm <span class="text-blue-400 font-semibold">Eloy</span>, a
-              technology enthusiast who found in programming the perfect mix of
-              logic and creativity.
-            </>
-          )}
-        </p>
-
-        <p>
-          {t.about.p2
-            .replace("React and Next.js", "")
-            .replace("React y Next.js", "")}
-          {/* Mantengo los spans de highlight como en tu texto original */}
-          {lang === "es" ? (
-            <>
-              Mi enfoque va más allá de escribir líneas de código; me dedico a crear
-              soluciones completas. Me muevo con fluidez en el ecosistema de{" "}
-              <span class="text-white">React y Next.js</span>, y disfruto diseñando
-              estructuras de datos sólidas en{" "}
-              <span class="text-white">PostgreSQL</span>.
-            </>
-          ) : (
-            <>
-              My approach goes beyond writing lines of code; I focus on building
-              complete solutions. I'm fluent in the{" "}
-              <span class="text-white">React and Next.js</span> ecosystem, and I
-              enjoy designing solid data structures with{" "}
-              <span class="text-white">PostgreSQL</span>.
-            </>
-          )}
-        </p>
-
-        <p>
-          {lang === "es" ? (
-            <>
-              Para mí, cada proyecto es una oportunidad de equilibrar un rendimiento
-              extremo (gracias a herramientas como{" "}
-              <span class="text-white">Astro</span>) con una estética impecable
-              usando <span class="text-white">Tailwind CSS</span>.
-            </>
-          ) : (
-            <>
-              For me, every project is an opportunity to balance extreme performance
-              (thanks to tools like <span class="text-white">Astro</span>) with a
-              polished aesthetic using <span class="text-white">Tailwind CSS</span>.
-            </>
-          )}
-        </p>
+        <p>{t.about.p1}</p>
+				<p>{t.about.p2}</p>
+				<p>{t.about.p3}</p>
       </div>
     </section>
 
     <section id="projects" class="w-full max-w-5xl mx-auto px-6 py-24">
       <div class="flex items-end justify-between gap-6">
         <div>
-          <p class="text-sm uppercase tracking-wider text-white/60">
-            {t.projects.eyebrow}
-          </p>
+          <p class="text-sm uppercase tracking-wider text-white/60">{t.projects.eyebrow}</p>
           <h2
             class="text-3xl sm:text-4xl font-bold text-white"
             style="font-family: var(--font-cal-sans);"
@@ -143,7 +86,7 @@ console.log("auto-locale redirect running", navigator.language);
         </div>
 
         <a
-          href="https://github.com/"
+          href={LINKS.github}
           target="_blank"
           rel="noopener"
           class="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 transition"
@@ -154,7 +97,6 @@ console.log("auto-locale redirect running", navigator.language);
       </div>
 
       <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Card 1 -->
         <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition">
           <div class="flex items-start justify-between gap-4">
             <h3 class="text-lg font-semibold text-white">{t.projects.card1.title}</h3>
@@ -167,9 +109,7 @@ console.log("auto-locale redirect running", navigator.language);
 
           <div class="mt-5 flex flex-wrap gap-2">
             {t.projects.card1.tags.map((tag) => (
-              <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
-                {tag}
-              </span>
+              <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">{tag}</span>
             ))}
           </div>
 
@@ -189,7 +129,6 @@ console.log("auto-locale redirect running", navigator.language);
           </div>
         </article>
 
-        <!-- Card 2 -->
         <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition">
           <div class="flex items-start justify-between gap-4">
             <h3 class="text-lg font-semibold text-white">{t.projects.card2.title}</h3>
@@ -201,10 +140,8 @@ console.log("auto-locale redirect running", navigator.language);
           <p class="mt-3 text-white/70">{t.projects.card2.desc}</p>
 
           <div class="mt-5 flex flex-wrap gap-2">
-            {t.projects.card2.tags.map((tag: unknown) => (
-              <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
-                {tag}
-              </span>
+            {t.projects.card2.tags.map((tag) => (
+              <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">{tag}</span>
             ))}
           </div>
 
@@ -228,9 +165,7 @@ console.log("auto-locale redirect running", navigator.language);
 
     <section id="contact" class="w-full max-w-5xl mx-auto px-6 pb-28">
       <div class="rounded-3xl border border-white/10 bg-white/5 p-8 sm:p-10">
-        <p class="text-sm uppercase tracking-wider text-white/60">
-          {t.contact.eyebrow}
-        </p>
+        <p class="text-sm uppercase tracking-wider text-white/60">{t.contact.eyebrow}</p>
         <h2
           class="mt-2 text-3xl sm:text-4xl font-bold text-white"
           style="font-family: var(--font-cal-sans);"
@@ -241,10 +176,9 @@ console.log("auto-locale redirect running", navigator.language);
         <p class="mt-4 text-white/70 max-w-2xl">{t.contact.intro}</p>
 
         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Contact info -->
           <div class="space-y-4">
             <a
-              href={"mailto:" + t.contact.cards.emailValue}
+              href={"mailto:" + LINKS.email}
               class="flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-white/80 hover:text-white hover:bg-white/10 transition"
             >
               <div>
@@ -255,7 +189,7 @@ console.log("auto-locale redirect running", navigator.language);
             </a>
 
             <a
-              href="https://www.linkedin.com/"
+              href={LINKS.linkedin}
               target="_blank"
               rel="noopener"
               class="flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-white/80 hover:text-white hover:bg-white/10 transition"
@@ -268,7 +202,7 @@ console.log("auto-locale redirect running", navigator.language);
             </a>
 
             <a
-              href="https://github.com/"
+              href={LINKS.github}
               target="_blank"
               rel="noopener"
               class="flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-white/80 hover:text-white hover:bg-white/10 transition"
@@ -281,47 +215,64 @@ console.log("auto-locale redirect running", navigator.language);
             </a>
           </div>
 
-          <!-- Form -->
-          <form class="rounded-2xl border border-white/10 bg-black/20 p-5 space-y-4">
-            <div>
-              <label class="text-sm text-white/70">{t.contact.form.name}</label>
-              <input
-                type="text"
-                name="name"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30"
-                placeholder={t.contact.form.namePlaceholder}
-              />
-            </div>
+          <form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="rounded-2xl border border-white/10 bg-black/20 p-5 space-y-4"
+>
+  <!-- Netlify necesita este input hidden -->
+  <input type="hidden" name="form-name" value="contact" />
 
-            <div>
-              <label class="text-sm text-white/70">{t.contact.form.email}</label>
-              <input
-                type="email"
-                name="email"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30"
-                placeholder={t.contact.form.emailPlaceholder}
-              />
-            </div>
+  <!-- Honeypot anti-spam -->
+  <p class="hidden">
+    <label>Don’t fill this out: <input name="bot-field" /></label>
+  </p>
 
-            <div>
-              <label class="text-sm text-white/70">{t.contact.form.message}</label>
-              <textarea
-                name="message"
-                rows="4"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30"
-                placeholder={t.contact.form.messagePlaceholder}
-              ></textarea>
-            </div>
+  <div>
+    <label for="name" class="text-sm text-white/70">{t.contact.form.name}</label>
+    <input
+      id="name"
+      type="text"
+      name="name"
+      required
+      class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30"
+      placeholder={t.contact.form.namePlaceholder}
+    />
+  </div>
 
-            <button
-              type="button"
-              class="w-full rounded-xl bg-white px-4 py-3 text-sm font-semibold text-black hover:opacity-90 transition"
-            >
-              {t.contact.form.submit}
-            </button>
+  <div>
+    <label for="email" class="text-sm text-white/70">{t.contact.form.email}</label>
+    <input
+      id="email"
+      type="email"
+      name="email"
+      required
+      class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30"
+      placeholder={t.contact.form.emailPlaceholder}
+    />
+  </div>
 
-            <p class="text-xs text-white/40">{t.contact.form.note}</p>
-          </form>
+  <div>
+    <label for="message" class="text-sm text-white/70">{t.contact.form.message}</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="4"
+      required
+      class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30"
+      placeholder={t.contact.form.messagePlaceholder}
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    class="w-full rounded-xl bg-white px-4 py-3 text-sm font-semibold text-black hover:opacity-90 transition"
+  >
+    {t.contact.form.submit}
+  </button>
+</form>
         </div>
       </div>
     </section>
