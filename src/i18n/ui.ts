@@ -39,7 +39,7 @@ export const ui = {
         type: "Web App",
         desc:
           "Personal finance expense tracker website with charts. It solved my problem of comparing expenses from one year to another.",
-        tags: ["React", "Next.js", "TypeScript", "Tailwind"],
+        tags: ["TypeScript", "React", "Next.js", "Supabase", "Tailwind",],
         live: "Link",
         code: "Code",
       },
@@ -118,7 +118,7 @@ export const ui = {
         type: "Web App",
         desc:
           "Web para gestion de gastos personales con gráficos. Resolvió mi problema para comparar gastos de un año para otro.",
-        tags: ["React", "Next.js", "TypeScript", "Tailwind"],
+        tags: ["TypeScript", "React", "Next.js", "Supabase", "Tailwind",],
         live: "Link",
         code: "Code",
       },

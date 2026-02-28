@@ -1,4 +1,18 @@
 ---
+import ReactIcon from "../assets/react_dark.svg";
+import NextIcon from "../assets/nextjs_icon_dark.svg";
+import SupabaseIcon from "../assets/supabase.svg"
+import TailwindIcon from "../assets/tailwindcss.svg";
+import TypeScriptIcon from "../assets/typescript.svg"
+
+const ICONS = {
+  React: ReactIcon,
+  'Next.js': NextIcon,
+  Supabase: SupabaseIcon,
+  Tailwind: TailwindIcon,
+  TypeScript: TypeScriptIcon
+} as const;
+
 import { ui, type Locale } from "../i18n/ui";
 
 type T = (typeof ui)[Locale];
@@ -7,7 +21,7 @@ type Links = { linkedin: string; github: string; email: string };
 const { t, links } = Astro.props as { t: T; links: Links };
 ---
 
-<section id="projects" class="w-full max-w-5xl mx-auto px-6 py-24">
+<section id="projects" class="w-full lg:w-5xl mx-auto mt-22 py-12">
   <div class="flex items-end justify-between gap-6">
     <div>
       <p class="text-sm uppercase tracking-wider text-white/60">
@@ -53,7 +67,7 @@ const { t, links } = Astro.props as { t: T; links: Links };
         src="/spency.webp"
         alt={t.projects.card1.title}
         loading="lazy"
-        class="mt-4 w-full rounded-xl"
+        class="mt-4 w-full rounded-xl transition duration-700 ease-in-out hover:scale-105"
       />
 
       <p class="mt-4 text-white/70">{t.projects.card1.desc}</p>
@@ -62,23 +76,27 @@ const { t, links } = Astro.props as { t: T; links: Links };
       <div class="mt-auto">
         <div class="mt-10 mb-10 flex flex-wrap justify-end gap-2">
           {
-            t.projects.card1.tags.map((tag: string) => (
-              <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
-                {tag}
-              </span>
-            ))
+            t.projects.card1.tags.map((tag: string) => {
+              const Icon = (ICONS as any)[tag];
+              return (
+                <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
+                  {Icon && <Icon class="size-4 block" />}
+                  <span class="leading-none">{tag}</span>
+                </span>
+              );
+            })
           }
         </div>
 
         <div class="mt-4 flex items-center gap-3">
           <a
-            href="#"
+            href="https://www.spency.app" target="_blank" rel="noopener"
             class="inline-flex items-center justify-center rounded-full bg-white text-black px-4 py-2 text-sm font-medium hover:opacity-90 transition"
           >
             {t.projects.card1.live}
           </a>
           <a
-            href="#"
+            href="https://github.com/EloySM/spency" target="_blank" rel="noopener"
             class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 transition"
           >
             {t.projects.card1.code}

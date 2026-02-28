@@ -7,7 +7,7 @@ import Mail from "../assets/mail.svg";
 
 const { t, links } = Astro.props
 ---
-<section class="w-full lg:w-3xl mx-auto py-22">
+<section class="w-full lg:w-3xl mx-auto mt-32 py-12">
       <img class="rounded-full size-24 mb-8" src="/avatar.png" alt={t.hero.altAvatar} />
 
       <h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-10">
@@ -22,9 +22,9 @@ const { t, links } = Astro.props
         </a>
       </h1>
 
-      <h2 class="text-2xl opacity-85 text-wrap">
+      <h2 class="text-2xl text-wrap">
         <span>{t.hero.experience}</span>
-        <span class="text-yellow-200">{t.hero.role}</span>
+        <span class="text-amber-200">{t.hero.role}</span>
         <span class="opacity-90"> {t.hero.location}</span>
         <span class="opacity-80"> {t.hero.specialty}</span>
       </h2>
@@ -40,7 +40,7 @@ const { t, links } = Astro.props
           {t.social.github}
         </SocialPill>
 
-        <SocialPill href={"mailto:" + links.email}>
+        <SocialPill href={`https://mail.google.com/mail/?view=cm&fs=1&to=${links.email}`}>
           <Mail class="size-5" />
           {links.email}
         </SocialPill>
