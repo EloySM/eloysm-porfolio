@@ -1,0 +1,11 @@
+# public/robots.txt
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Crawl-delay
+Crawl-delay: 0
+
+# Sitemap location
+Sitemap: https://eloysm.dev/sitemap-index.xml
