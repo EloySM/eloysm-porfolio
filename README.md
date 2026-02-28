@@ -1,46 +1,33 @@
-# Astro Starter Kit: Basics
+# 💼 Eloy Sánchez — Portfolio
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Personal portfolio website showcasing my work as a **Web Developer**.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![Portfolio Preview](/public/og-image.png)
 
-## 🚀 Project Structure
+## 🚀 Built With
 
-Inside of your Astro project, you'll see the following folders and files:
+- **[Astro](https://astro.build)** — Static-first web framework
+- **[TypeScript](https://www.typescriptlang.org/)** — Type-safe JavaScript
+- **[Tailwind CSS](https://tailwindcss.com/)** — Utility-first CSS
+- **[Vercel](https://vercel.com/)** — Hosting + Serverless functions
+- **[Resend](https://resend.com/)** — Email delivery (contact form)
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## ✨ Features
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- ⚡ Fast, static-first pages with Astro
+- 🌍 i18n routing (English / Spanish)
+- 🌙 Dark/Light mode (if enabled)
+- 📱 Responsive layout
+- 📨 Contact form sending emails via `/api/contact`
 
-## 🧞 Commands
+## 🌍 Routes (i18n)
 
-All commands are run from the root of the project, from a terminal:
+- English (default): `/`
+- Spanish: `/es/`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## 📦 Installation
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+git clone https://github.com/EloySM/eloysm-portfolio.git
+cd eloysm-portfolio
+npm install
